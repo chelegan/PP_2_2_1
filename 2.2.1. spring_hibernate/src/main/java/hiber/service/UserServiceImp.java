@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserServiceImp implements UserService {
 
     private final UserDao userDao;
@@ -21,6 +20,7 @@ public class UserServiceImp implements UserService {
 
 
     @Override
+    @Transactional
     public void add(User user) {
         userDao.add(user);
     }
@@ -33,6 +33,7 @@ public class UserServiceImp implements UserService {
 
 
     @Override
+    @Transactional(readOnly = true) 
     public User getUserByCar(String model, int series) {
         return userDao.getUserByCar(model, series);
     }
